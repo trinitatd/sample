@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appscript sample</title>
+  <style>
+   body {
+      background-image: url("coolbluebackground.jpg");
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: #1a1a1a;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h1 {
+      color: #00ffff;
+      text-align: center;
+      display: block;
+      width: 100%;
+      margin-bottom: 1.5rem
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #cccccc;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 2px solid #00ffff;
+      background-color: #0f0f0f;
+      color: white;
+      border-radius: 8px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #00ff99;
+      box-shadow: 0 0 8px #00ff99;
+    }
+
+    button {
+      background-color: #00ffff;
+      color: #000000;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 50%;
+      transition: 0.3s;
+      display: block;
+      margin: 0 auto;
+    }
+
+    button:hover {
+      background-color: #3300ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Registration Form</h1>
+    <br>
+    <form id="sampleform" onsubmit="showAlert(event)">
+      <table>
+        <tr>
+          <td></td>
+          <td>Name </td>
+          <td><input type="text" id="aname" name="aname"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Year </td>
+          <td>
+            <select id="year" name="year">
+              <option value="">--Select--</option>
+              <option value="first">First</option>
+              <option value="second">Second</option>
+              <option value="third">Third</option>
+              <option value="fourth">Fourth</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Department </td>
+          <td>
+            <select id="dept" name="dept">
+              <option value="">--Select--</option>
+              <option value="IT">IT</option>
+              <option value="ECE">ECE</option>
+              <option value="EEE">EEE</option>
+              <option value="ME">ME</option>
+              <option value="CE">CE</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Mobile No. </td>
+          <td><input type="text" id="mobile" name="mobile"></td>
+        </tr>
+          <td colspan="4" style="text-align: center;">
+            <button type="submit">Submit</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+  <script>
+
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxZfJrrlCQgrdo1PUKnJ5Eul1RT7UuQcgJDCO7WRbqPMzRn3wvC1UlCSbilTC4tvUM4_g/exec"; 
+      document.getElementById("sampleform").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const form = document.getElementById("sampleform");
+      const formData = new FormData(form);
+      try {
+        const response = await fetch(scriptURL, {
+          method: "POST",
+          body: formData
+        });
+        const result = await response.text();
+        alert("Success: " + result);
+        form.reset();
+      } catch (error) {
+        alert("Error: " + error.message);
+      }
+    });
+    function showAlert(event) {
+      event.preventDefault(); // Prevent actual form submission
+      alert("Form submitted successfully!");
+    }
+  </script>
+</body>
+</html>
