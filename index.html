@@ -15,7 +15,6 @@
       height: 100vh;
       margin: 0;
     }
-
     .form-container {
       background-color: #1a1a1a;
       padding: 2rem;
@@ -128,7 +127,7 @@
 
   <script>
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbx-NqA_prnN6bGZdOJ5Xiu62bdEQWzm_Nq1X7SWTP3PU9aYV5JrWvgTYH5GvPgloDkgAw/exec"; 
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzgr7KZGdjv96Y9-DPjiz9mrqL8S7p3dh7gxbpV_ME9dxZ7-7gfv0_6x9-LHQF5WWcKjA/exec"; 
       document.getElementById("sampleform").addEventListener("submit", async function(e) {
       e.preventDefault();
       const form = document.getElementById("sampleform");
@@ -146,7 +145,7 @@
       }
     });
     function showAlert(event) {
-      event.preventDefault(); // Prevent actual form submission
+      event.preventDefault(); 
       alert("Form submitted successfully!");
     }
   </script>
